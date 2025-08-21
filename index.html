@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>绘梦AI屋 - AI绘本生成器</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+
+
+        <!-- 头部 -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h1 class="app-title">绘梦AI屋</h1>
+            </div>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <div class="card">
+                <!-- 故事创意输入 -->
+                <div class="input-group">
+                    <label for="simple-prompt">输入你的故事创意</label>
+                    <input 
+                        type="text" 
+                        id="simple-prompt" 
+                        placeholder="例如:宇航员小熊的冒险"
+                        class="input-field"
+                    >
+                </div>
+
+                <!-- 页数 -->
+                <div class="input-group">
+                    <label for="page-count">页数</label>
+                    <input 
+                        type="number" 
+                        id="page-count" 
+                        value="6" 
+                        min="1" 
+                        max="50"
+                        class="input-field"
+                    >
+                </div>
+
+                <!-- 高级模式 -->
+                <div class="advanced-mode" id="advanced-mode">
+                    <div class="advanced-header" onclick="toggleAdvanced()">
+                        <span>高级模式 (主角/场景/主题/结局等)</span>
+                        <div class="advanced-icons">
+                            <i class="fas fa-play"></i>
+                            <i class="fas fa-cog"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="advanced-content" id="advanced-content">
+                        <div class="input-group">
+                            <label for="protagonist">主角</label>
+                            <input type="text" id="protagonist" placeholder="例如:勇敢的小兔子" class="input-field">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="scene">场景</label>
+                            <input type="text" id="scene" placeholder="例如:神秘的森林" class="input-field">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="theme">主题</label>
+                            <input type="text" id="theme" placeholder="例如:友谊与勇气" class="input-field">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="ending">结局</label>
+                            <input type="text" id="ending" placeholder="例如:圆满的结局" class="input-field">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 生成按钮 -->
+                <button class="generate-btn" onclick="generateBook()">
+                    <i class="fas fa-star"></i>
+                    生成绘本
+                </button>
+
+                <!-- 示例按钮 -->
+                <button class="example-btn" onclick="showExamples()">
+                    <i class="fas fa-dice"></i>
+                    示例
+                </button>
+            </div>
+        </main>
+
+        <!-- 底部安全区域 -->
+        <div class="bottom-safe-area"></div>
+    </div>
+
+    <!-- 加载状态 -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>正在生成您的绘本...</p>
+        </div>
+    </div>
+
+    <!-- 示例弹窗 -->
+    <div class="modal" id="example-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>示例提示词</h3>
+                <button class="close-btn" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="example-item" onclick="useExample('宇航员小熊的冒险', 12)">
+                    <h4>宇航员小熊的冒险</h4>
+                    <p>一只勇敢的小熊穿上宇航服，探索宇宙的奇妙故事</p>
+                    <span class="page-count">12页</span>
+                </div>
+                <div class="example-item" onclick="useExample('魔法森林的小精灵', 8)">
+                    <h4>魔法森林的小精灵</h4>
+                    <p>在神秘的魔法森林中，小精灵们帮助迷路的小动物回家</p>
+                    <span class="page-count">8页</span>
+                </div>
+                <div class="example-item" onclick="useExample('海底世界的友谊', 10)">
+                    <h4>海底世界的友谊</h4>
+                    <p>小鱼和小海龟在美丽的海底世界建立深厚友谊的故事</p>
+                    <span class="page-count">10页</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.__ARK_PROXY_BASE__ = 'https://aistory5.vercel.app';
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
